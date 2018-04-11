@@ -35,3 +35,8 @@ Here comes a summary of training and development set:
 | ---------------- | ---------
 | Training (all)   | 2,178,025
 | Development      |     2,000
+
+# *tensor2tensor* - Transformer
+
+A NMT system for English-Estonian is built with the [*tensor2tensor*](https://github.com/tensorflow/tensor2tensor)
+library.
