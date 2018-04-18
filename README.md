@@ -137,7 +137,7 @@ Model A is trained on a *DGX-1* with 8 NVIDIA P100 GPUs for 30.000 steps.
 
 The *TensorBoard* figure shows some nice statistics:
 
-![TensorBoard English-Estonian](figures/t2t-model-a.png.png)
+![TensorBoard English-Estonian](figures/t2t-model-a.png)
 
 The obtained BLEU-scores on the development set for this models are:
 
