@@ -80,7 +80,7 @@ cd scripts
 cd ..
 ```
 
-Finally, the folder structure for `fairseq-py` for the training corpus needs to
+Finally, the folder structure for `fairseq` for the training corpus needs to
 be created:
 
 ```bash
@@ -107,7 +107,7 @@ rm -f bpe.32000 corpus.* vocab.*
 cd ..
 ```
 
-Finally, the folder structure for `fairseq-py` for the development data needs
+Finally, the folder structure for `fairseq` for the development data needs
 to be created:
 
 ```bash
@@ -117,6 +117,26 @@ cp scripts/corpus.bpe.32000.et dev/dev.et
 ```
 
 ## Training
+
+The following `fairseq` commands executes all necessary pre-training steps
+(lile generating the vocabulary):
+
+```bash
+mkdir model-data
+fairseq preprocess -sourcelang en -targetlang et -trainpref train/train \
+                   -validpref dev/dev -testpref dev/dev -thresholdsrc 3 \
+                   -thresholdtgt 3 -destdir model-data
+```
+
+After that, a new model can be trained. In this example we use a fully
+convolutional encoder & decoder model:
+
+```bash
+mkdir model-fconv
+fairseq train -sourcelang en -targetlang et -datadir model-data -model fconv \
+              -nenclayer 4 -nlayer 3 -dropout 0.2 -optim nag -lr 0.25 \
+              -clip 0.1 -momentum 0.99 -timeavg -bptt 0 -savedir model-fconv
+```
 
 ## Decoding
 
